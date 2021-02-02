@@ -1,6 +1,5 @@
 <template>
   <div class="ShowJob">
-    <hr />
     <h3>Title: {{ job.title }}</h3>
     <span id="description">
       <h3>Description:</h3>
@@ -14,7 +13,6 @@
         </li>
       </ul>
     </div>
-    <hr />
   </div>
 </template>
 
@@ -29,6 +27,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.ShowJob {
+  margin: 10px;
+  border: 4px solid #e75466;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #e9e9e9;
+}
 h3 {
   margin: 0.25em 0 0;
 }

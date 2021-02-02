@@ -2,9 +2,9 @@
   <div class="JobsIndex">
     <h1>Jobs Index</h1>
     <div class="job-filter">
-      <h2>Job Filter</h2>
+      <h2>Filter by skill:</h2>
       <input
-        id="skill"
+        id="skillFilter"
         type="text"
         value=""
         placeholder="Type in one skill to filter jobs by."
@@ -13,13 +13,13 @@
       <p class="warning">{{ filterMessage }}</p>
     </div>
     <div class="job-list">
-      <h2>Job List</h2>
+      <hr />
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
           <ShowJob :job="job"></ShowJob>
         </li>
       </ul>
-      <h2>-- End of List --</h2>
+      <hr />
     </div>
   </div>
 </template>
@@ -129,5 +129,12 @@ a {
 }
 .warning {
   color: #e50038;
+  font-size: 1em;
+}
+#skillFilter {
+  float: center;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 0.125em 0.125em;
 }
 </style>
