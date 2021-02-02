@@ -16,7 +16,7 @@
 
       <div class="form-field">
         <label for="job-description">Description</label>
-        <input
+        <textarea
           type="text"
           id="job-description"
           v-model="description"
