@@ -2,22 +2,16 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <JobsIndex msg="--JobsIndex component--" />
-    <ShowJob msg="--ShowJob component--"/>
-    <EditJob msg="--EditJob component--" />
   </div>
 </template>
 
 <script>
 import JobsIndex from "./components/JobsIndex.vue";
-import ShowJob from "./components/JobsIndex.vue";
-import EditJob from "./components/EditJob.vue";
 
 export default {
   name: "App",
   components: {
-    JobsIndex,
-    ShowJob,
-    EditJob
+    JobsIndex
   }
 };
 </script>
