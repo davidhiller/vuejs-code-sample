@@ -8,7 +8,7 @@
           <input
             type="text"
             id="job-title"
-            value="title"
+            v-model="title"
             placeholder="Job Title"
           />
         </div>
@@ -19,18 +19,22 @@
         <input
           type="text"
           id="job-description"
-          value="description"
+          v-model="description"
           placeholder="Description"
         />
       </div>
 
       <div>
         <ul id="skills">
-          <li class="skill" v-for="(skill, index) in job.skills" :key="index">
+          <li
+            class="skill"
+            v-for="(skill, index) in skills"
+            :key="index"
+          >
             <input
               type="text"
               id="skill"
-              value="skill"
+              v-model="skills[index]"
               placeholder="Enter new skill."
             />
           </li>
@@ -50,8 +54,25 @@ export default {
     return {
       title: this.job.title,
       description: this.job.description,
-      skills: this.job.skills
+      jobSkills: this.job.skills
     };
+  },
+  computed: {
+    skills: function() {
+      let skills = this.jobSkills;
+      return skills.concat('');
+    },
+    filterEmptySkills: function() {
+      this.skill.trim()
+      return this.newJob.skills;
+    },
+    newJob: function() {
+      return {
+          title: this.title,
+          description: this.description,
+          skills: this.filterEmptySkills
+      }
+    }
   } /*,
   methods: {
     submit: function() {
