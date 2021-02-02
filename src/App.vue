@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <!--<HelloWorld msg="Welcome to Your Vue.js App" />-->
     <JobsIndex msg="--JobsIndex component--" />
     <ShowJob msg="--ShowJob component--"/>
     <EditJob msg="--EditJob component--" />
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld.vue";
 import JobsIndex from "./components/JobsIndex.vue";
 import ShowJob from "./components/JobsIndex.vue";
 import EditJob from "./components/EditJob.vue";
@@ -17,7 +15,6 @@ import EditJob from "./components/EditJob.vue";
 export default {
   name: "App",
   components: {
-    //HelloWorld,
     JobsIndex,
     ShowJob,
     EditJob
