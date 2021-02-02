@@ -3,11 +3,11 @@
     <hr />
     <h3>Title: {{ job.title }}</h3>
     <span id="description">
-      <h3>Description: </h3>
-      <p> {{ job.description }} </p>
+      <h3>Description:</h3>
+      <p>{{ job.description }}</p>
     </span>
     <div id="skill-list">
-      <h3> Skills: </h3>
+      <h3>Skills:</h3>
       <ul id="skills">
         <li class="skill" v-for="(skill, index) in job.skills" :key="index">
           {{ skill }}
