@@ -1,6 +1,5 @@
 <template>
   <div class="JobsIndex">
-    <h1>{{ msg }}</h1>
     <ul id="jobs">
       <li class="job" v-for="job in jobs" :key="job.name">
         {{ job.name }}
@@ -12,10 +11,7 @@
 <script>
 export default {
   name: "JobsIndex",
-  props: {
-    msg: String,
-    jobs: Array
-  },
+  props: {},
   data() { // Sample data hard-coded for development.
     return {
       jobs: [
