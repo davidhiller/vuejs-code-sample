@@ -10,6 +10,7 @@
         placeholder="Type in one skill to filter jobs by."
         v-model="skill"
       />
+      <p class="warning">{{ filterMessage }}</p>
     </div>
     <div class="job-list">
       <h2>Job List</h2>
@@ -97,6 +98,14 @@ export default {
         );
       }
       return jobs;
+    },
+    filterMessage: function() {
+      let skillFilter = this.skill.trim().toLowerCase();
+      if (skillFilter) {
+        return `Filtering on skills; showing ${this.filteredJobs.length} of ${this.jobs.length} Jobs.`;
+      } else {
+        return "";
+      }
     }
   }
 };
@@ -117,5 +126,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.warning {
+  color: #e50038;
 }
 </style>
