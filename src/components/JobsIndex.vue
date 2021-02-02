@@ -15,6 +15,39 @@ export default {
   props: {
     msg: String,
     jobs: Array
+  },
+  data() { // Sample data hard-coded for development.
+    return {
+      jobs: [
+        { id: 1,
+          title: "Job A",
+          description: "Description for Job A",
+          skills: [
+            "Skill A1",
+            "Skill A2",
+            "Skill A3",
+            "Skill A4"
+          ]
+        },
+        { id: 2, 
+          title: "Job B",
+          description: "Description for Job B",
+          skills: [
+            "Skill B1",
+            "Skill B2",
+          ]
+        },
+        { id: 3, 
+          title: "Job C",
+          description: "Description for Job C",
+          skills: [
+            "Skill C1",
+            "Skill C2",
+            "Skill C3"
+          ]
+        }
+      ]
+    }
   }
 };
 </script>
