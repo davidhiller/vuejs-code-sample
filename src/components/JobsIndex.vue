@@ -1,17 +1,31 @@
 <template>
   <div class="JobsIndex">
-    <ul id="jobs">
-      <li class="job" v-for="job in jobs" :key="job.name">
-        {{ job.name }}
-      </li>
-    </ul>
+    <h1>Jobs Index</h1>
+    <div class="filter">
+      <h2>Job Filter</h2>
+      <p>Filter goes here.</p>
+    </div>
+    <div class="job-list">
+      <h2>Job List</h2>
+      <ul id="jobs">
+        <li v-for="job in jobs" :key="job.id">
+          <ShowJob :job=job></ShowJob>
+        </li>
+      </ul>
+      <h2>-- End of List --</h2>
+    </div>
   </div>
 </template>
 
 <script>
+import ShowJob from "./ShowJob.vue";
+
 export default {
   name: "JobsIndex",
   props: {},
+  components: {
+    ShowJob
+  },
   data() { // Sample data hard-coded for development.
     return {
       jobs: [

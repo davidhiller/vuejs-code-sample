@@ -1,11 +1,20 @@
 <template>
   <div class="ShowJob">
-    <h1>{{ msg }}</h1>
-    <ul id="jobs">
-      <li class="job" v-for="job in jobs" :key="job.name">
-        {{ job.name }}
-      </li>
-    </ul>
+    <hr />
+    <h3>Title: {{ job.title }}</h3>
+    <span id="description">
+      <h3>Description: </h3>
+      <p> {{ job.description }} </p>
+    </span>
+    <div id="skill-list">
+      <h3> Skills: </h3>
+      <ul id="skills">
+        <li class="skill" v-for="(skill, index) in job.skills" :key="index">
+          {{ skill }}
+        </li>
+      </ul>
+    </div>
+    <hr />
   </div>
 </template>
 
@@ -13,7 +22,7 @@
 export default {
   name: "ShowJob",
   props: {
-    msg: String
+    job: Object
   }
 };
 </script>
