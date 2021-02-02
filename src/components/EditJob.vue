@@ -1,6 +1,6 @@
 <template>
   <div class="EditJob">
-    <h1>This is the EditJob component</h1>
+    <h3>This is the EditJob component</h3>
     <form>
       <div class="form-row vertical">
         <div class="form-field">
@@ -65,8 +65,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.EditJob {
+  margin: 10px;
+  border: 4px solid #e75466;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #e9e9e9;
+}
 h3 {
-  margin: 40px 0 0;
+  margin: 0.25em 0 0;
 }
 ul {
   list-style-type: none;

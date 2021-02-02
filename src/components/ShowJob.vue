@@ -30,7 +30,7 @@ export default {
 <style scoped lang="scss">
 .ShowJob {
   margin: 10px;
-  border: 4px solid #e75466;
+  border: 4px solid #5466e7;
   border-radius: 20px;
   padding: 10px;
   background-color: #e9e9e9;
