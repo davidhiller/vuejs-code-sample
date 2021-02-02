@@ -17,6 +17,7 @@
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
           <ShowJob :job="job" @job-deleted="deleteJob(job)" />
+          <EditJob :job="job" />
         </li>
       </ul>
       <hr />
@@ -26,12 +27,14 @@
 
 <script>
 import ShowJob from "./ShowJob.vue";
+import EditJob from "./EditJob.vue";
 
 export default {
   name: "JobsIndex",
   props: {},
   components: {
-    ShowJob
+    ShowJob,
+    EditJob
   },
   // Sample data hard-coded for development.
   data() {
