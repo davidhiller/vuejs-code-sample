@@ -16,7 +16,7 @@
       <hr />
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
-          <ShowJob :job="job"></ShowJob>
+          <ShowJob :job="job" @job-deleted="deleteJob(job)" />
         </li>
       </ul>
       <hr />
@@ -106,6 +106,11 @@ export default {
       } else {
         return "";
       }
+    }
+  },
+  methods: {
+    deleteJob(deletedJob) {
+      this.jobs = this.jobs.filter(job => job !== deletedJob);
     }
   }
 };
