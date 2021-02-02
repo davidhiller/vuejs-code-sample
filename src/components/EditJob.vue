@@ -26,11 +26,7 @@
 
       <div>
         <ul id="skills">
-          <li
-            class="skill"
-            v-for="(skill, index) in skills"
-            :key="index"
-          >
+          <li class="skill" v-for="(skill, index) in skills" :key="index">
             <input
               type="text"
               id="skill"
@@ -60,18 +56,18 @@ export default {
   computed: {
     skills: function() {
       let skills = this.jobSkills;
-      return skills.concat('');
+      return skills.concat("");
     },
     filterEmptySkills: function() {
-      this.skill.trim()
+      this.skill.trim();
       return this.newJob.skills;
     },
     newJob: function() {
       return {
-          title: this.title,
-          description: this.description,
-          skills: this.filterEmptySkills
-      }
+        title: this.title,
+        description: this.description,
+        skills: this.filterEmptySkills
+      };
     }
   } /*,
   methods: {
