@@ -61,8 +61,7 @@ export default {
       return skills.concat("");
     },
     filterEmptySkills: function() {
-      this.skill.trim();
-      return this.newJob.skills;
+      return this.skills.filter(skill => skill.trim().length != 0);
     },
     newJob: function() {
       return {
