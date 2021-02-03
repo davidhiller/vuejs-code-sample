@@ -35,6 +35,8 @@
           </li>
         </ul>
       </div>
+
+      <button type="button" @click="saveJob">Save</button>
     </form>
   </div>
 </template>
@@ -68,14 +70,13 @@ export default {
         skills: this.filterEmptySkills
       };
     }
-  } /*,
+  },
   methods: {
-    submit: function() {
-      alert("job-updated");
-      //this.$emit("Job Submitted");
-      //this.tempMessage = "";
+    saveJob: function() {
+      console.log("job-saved: "+this.newJob.id);
+      this.$emit("job-saved", this.newJob);
     }
-  }*/
+  }
 };
 </script>
 

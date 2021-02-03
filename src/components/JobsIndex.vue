@@ -17,7 +17,7 @@
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
           <ShowJob :job="job" @job-deleted="deleteJob(job)" />
-          <EditJob :job="job" />
+          <EditJob :job="job" @job-saved="updateJob($event)" />
         </li>
       </ul>
       <hr />
@@ -114,6 +114,16 @@ export default {
   methods: {
     deleteJob(deletedJob) {
       this.jobs = this.jobs.filter(job => job !== deletedJob);
+    },
+    updateJob(newJob) {
+      console.log("updateJob called");
+      // Locate the original of the job that was edited
+      const index = this.jobs.findIndex(job => job.id === newJob.id)
+      console.log("index: " + index);
+      console.log("new Job: ");
+      console.log(newJob);
+      // Replace original job with edited version
+      this.jobs[index] = newJob;
     }
   }
 };
