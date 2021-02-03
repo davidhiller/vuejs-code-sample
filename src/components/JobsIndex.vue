@@ -1,8 +1,10 @@
 <template>
   <div class="JobsIndex">
     <h1>Jobs Index</h1>
+    <!-- Add Job -->
+    <!-- Job Filter -->
     <div class="job-filter">
-      <h2>Filter by skill:</h2>
+      <h2>...or filter existing jobs by skill:</h2>
       <input
         id="skillFilter"
         type="text"
@@ -12,6 +14,7 @@
       />
       <p class="warning">{{ filterMessage }}</p>
     </div>
+    <!-- List and Edit Existing Jobs -->
     <div class="job-list">
       <hr />
       <ul id="jobs">
@@ -118,7 +121,7 @@ export default {
     updateJob(newJob) {
       console.log("updateJob called");
       // Locate the original of the job that was edited
-      const index = this.jobs.findIndex(job => job.id === newJob.id)
+      const index = this.jobs.findIndex(job => job.id === newJob.id);
       console.log("index: " + index);
       console.log("new Job: ");
       console.log(newJob);
