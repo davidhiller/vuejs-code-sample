@@ -1,5 +1,6 @@
 <template>
   <div class="ShowJob">
+    <!--<button @click="editJob">Edit Job</button>-->
     <button type="button" @click="$emit('job-deleted')">Delete Job</button>
     <h3>Title: {{ job.title }}</h3>
     <span id="description">
@@ -22,6 +23,13 @@ export default {
   name: "ShowJob",
   props: {
     job: Object
+  },
+  methods: {
+    editJob: function() {
+      console.log("Switching to edit mode.");
+      //this.$emit("Job Submitted");
+      //this.tempMessage = "";
+    }
   }
 };
 </script>
