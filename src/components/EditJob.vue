@@ -26,14 +26,22 @@
       <!-- List of text fields, one for each skill + a blank one for new entry. -->
       <div class="form-field">
         <ul id="edit-skills">
-          <li class="skill" v-for="(skill, index) in editSkills" :key="index">
+          <li class="skill" v-for="(skill, index) in skills" :key="index">
             <input
               type="text"
               id="skill"
               v-model="skills[index]"
-              placeholder="Enter new skill."
-              @blur="editSkills"
+              placeholder="Edit this skill."
             />
+          </li>
+          <li class = "skill">
+            <input
+              type="text"
+              id="skill"
+              v-model="newSkill"
+              placeholder="Enter new skill."
+            >
+            <button type="button" @click="this.skills.push(this.newSkill)">Add Skill</button>
           </li>
         </ul>
       </div>
@@ -52,31 +60,18 @@ export default {
   data() {
     return {
       id: this.job.id || -1,
-      title: this.job.title || " ",
-      description: this.job.description || " ",
-      skills: this.job.skills.slice() || [" "] // Create deep copy of job.skills
+      title: this.job.title || "",
+      description: this.job.description || "",
+      newSkill: " ",
+      skills: JSON.parse(JSON.stringify(this.job.skills)) || [] // Create deep copy of job.skills
     };
-  },
-  computed: {
-    editSkills: function() {
-      //let skills = [];
-      //Object.assign(skills, this.skills);
-      let skills = JSON.parse(JSON.stringify(this.skills)); // Naive deep copy.
-      //let skills = deepCopy(this.skills); // Again, this only works with deep copy.
-      // Gurantee that the last item in the skills array is always an empty string.
-      if (!skills[skills.length - 1].trim() === "") {
-        return skills.concat("");
-      } else {
-        return skills;
-      }
-    }
   },
   methods: {
     clearForm: function() {
       this.id = -1;
       this.title = "";
       this.description = "";
-      this.skills = [""];
+      this.skills = [];
     },
     validateForm: function() {
       return (
