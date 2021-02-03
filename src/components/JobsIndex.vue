@@ -2,6 +2,11 @@
   <div class="JobsIndex">
     <h1>Jobs Index</h1>
     <!-- Add Job -->
+    <div class="add-job">
+      <h2>Add a new job here:</h2>
+      <EditJob :job="blankJob" @job-saved="createJob($event)" />
+      <hr />
+    </div>
     <!-- Job Filter -->
     <div class="job-filter">
       <h2>...or filter existing jobs by skill:</h2>
@@ -20,7 +25,7 @@
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
           <ShowJob :job="job" @job-deleted="deleteJob(job)" />
-          <EditJob :job="job" @job-saved="updateJob($event)" />
+          <EditJob :job="job" @job-updated="updateJob($event)" />
         </li>
       </ul>
       <hr />
@@ -42,7 +47,14 @@ export default {
   // Sample data hard-coded for development.
   data() {
     return {
+      editMode: false,
       skill: "",
+      blankJob: {
+        id: -1,
+        title: "",
+        description: "",
+        skills: [""]
+      },
       jobs: [
         {
           id: 1,
@@ -115,8 +127,31 @@ export default {
     }
   },
   methods: {
+    resetBlankJob() {
+      this.blankJob = {
+        id: -1,
+        title: "",
+        description: "",
+        skills: [""]
+      };
+    },
     deleteJob(deletedJob) {
       this.jobs = this.jobs.filter(job => job !== deletedJob);
+    },
+    createJob(newJob) {
+      console.log("createJob called");
+
+      // Create a new unique id and assign it to the new job
+      newJob.id = Date.now();
+
+      console.log("new Job: ");
+      console.log(newJob);
+
+      // Add newJob to jobs
+      this.jobs.push(newJob);
+
+      // Reset form
+      this.resetBlankJob();
     },
     updateJob(newJob) {
       console.log("updateJob called");
