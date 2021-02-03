@@ -66,23 +66,19 @@ export default {
       } else {
         return skills;
       }
-    },
-    filterEmptySkills: function() {
-      return this.skills.filter(skill => skill.trim().length != 0);
-    },
-    newJob: function() {
-      return {
-        id: this.job.id,
-        title: this.title,
-        description: this.description,
-        skills: this.filterEmptySkills
-      };
     }
   },
   methods: {
     saveJob: function() {
-      console.log("job-saved: "+this.newJob.id);
-      this.$emit("job-saved", this.newJob);
+      let newJob = {
+        id: this.job.id,
+        title: this.title,
+        description: this.description,
+        skills: this.skills.filter(skill => skill.trim().length != 0) // Filter out skill items that that have no content
+      };
+
+      console.log("job-saved: " + newJob.id);
+      this.$emit("job-saved", newJob);
     }
   }
 };
