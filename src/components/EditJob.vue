@@ -34,14 +34,16 @@
               placeholder="Edit this skill."
             />
           </li>
-          <li class = "skill">
+          <li class="skill">
             <input
               type="text"
               id="skill"
               v-model="newSkill"
               placeholder="Enter new skill."
-            >
-            <button type="button" @click="this.skills.push(this.newSkill)">Add Skill</button>
+            />
+            <button type="button" @click="this.skills.push(this.newSkill)">
+              Add Skill
+            </button>
           </li>
         </ul>
       </div>
