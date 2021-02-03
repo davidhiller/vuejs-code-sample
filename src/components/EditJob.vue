@@ -51,15 +51,18 @@ export default {
   },
   data() {
     return {
-      id: this.job.id,
-      title: this.job.title,
-      description: this.job.description,
-      skills: this.job.skills.slice() // Create deep copy of job.skills
+      id: this.job.id || -1,
+      title: this.job.title || " ",
+      description: this.job.description || " ",
+      skills: this.job.skills.slice() || [" "] // Create deep copy of job.skills
     };
   },
   computed: {
     editSkills: function() {
-      let skills = this.skills;
+      //let skills = [];
+      //Object.assign(skills, this.skills);
+      let skills = JSON.parse(JSON.stringify(this.skills)); // Naive deep copy.
+      //let skills = deepCopy(this.skills); // Again, this only works with deep copy.
       // Gurantee that the last item in the skills array is always an empty string.
       if (!skills[skills.length - 1].trim() === "") {
         return skills.concat("");
@@ -69,16 +72,45 @@ export default {
     }
   },
   methods: {
+    clearForm: function() {
+      this.id = -1;
+      this.title = "";
+      this.description = "";
+      this.skills = [""];
+    },
+    validateForm: function() {
+      return (
+        this.title.trim().length > 0 &&
+        this.description.trim().length > 0 &&
+        this.filterOutEmptySkills().length > 0
+      );
+    },
+    filterOutEmptySkills: function() {
+      // Filter out skill items that that have no content
+      return this.skills.filter(skill => skill.trim().length != 0);
+    },
     saveJob: function() {
-      let newJob = {
-        id: this.job.id,
-        title: this.title,
-        description: this.description,
-        skills: this.skills.filter(skill => skill.trim().length != 0) // Filter out skill items that that have no content
-      };
-
-      console.log("job-saved: " + newJob.id);
-      this.$emit("job-saved", newJob);
+      console.log(this.validateForm());
+      if (this.validateForm()) {
+        let newJob = {
+          id: this.id,
+          title: this.title,
+          description: this.description,
+          skills: this.filterOutEmptySkills()
+        };
+        if (newJob.id === -1) {
+          console.log("job-saved: " + newJob.id);
+          this.$emit("job-saved", newJob);
+          this.clearForm();
+        } else {
+          console.log("job-updated: " + newJob.id);
+          this.$emit("job-updated", newJob);
+        }
+      } else {
+        console.log(
+          "title, description, and at least one skill must be entered"
+        );
+      }
     }
   }
 };
