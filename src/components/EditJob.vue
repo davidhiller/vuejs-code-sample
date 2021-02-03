@@ -41,7 +41,7 @@
               v-model="newSkill"
               placeholder="Enter new skill."
             />
-            <button type="button" @click="this.skills.push(this.newSkill)">
+            <button type="button" @click="addSkill">
               Add Skill
             </button>
           </li>
@@ -64,7 +64,7 @@ export default {
       id: this.job.id || -1,
       title: this.job.title || "",
       description: this.job.description || "",
-      newSkill: " ",
+      newSkill: "",
       skills: JSON.parse(JSON.stringify(this.job.skills)) || [] // Create deep copy of job.skills
     };
   },
@@ -73,7 +73,7 @@ export default {
       this.id = -1;
       this.title = "";
       this.description = "";
-      this.skills = [];
+      this.skills = "";
     },
     validateForm: function() {
       return (
@@ -81,6 +81,10 @@ export default {
         this.description.trim().length > 0 &&
         this.filterOutEmptySkills().length > 0
       );
+    },
+    addSkill: function() {
+      this.skills.push(this.newSkill);
+      this.newSkill = "";
     },
     filterOutEmptySkills: function() {
       // Filter out skill items that that have no content

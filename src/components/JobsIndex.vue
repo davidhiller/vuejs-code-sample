@@ -55,7 +55,7 @@ export default {
         id: -1,
         title: "",
         description: "",
-        skills: [""]
+        skills: []
       }
     };
   },
