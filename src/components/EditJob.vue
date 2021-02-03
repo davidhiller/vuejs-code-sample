@@ -54,7 +54,7 @@ export default {
       id: this.job.id,
       title: this.job.title,
       description: this.job.description,
-      jobSkills: this.job.skills
+      skills: this.job.skills.slice() // Create deep copy of job.skills
     };
   },
   computed: {
