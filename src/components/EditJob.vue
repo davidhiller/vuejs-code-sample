@@ -1,6 +1,5 @@
 <template>
   <div class="EditJob">
-    <h3>This is the EditJob component</h3>
     <form>
       <div class="form-row vertical">
         <div class="form-field">
