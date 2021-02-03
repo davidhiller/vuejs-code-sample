@@ -23,9 +23,10 @@
         />
       </div>
 
-      <div>
-        <ul id="skills">
-          <li class="skill" v-for="(skill, index) in skills" :key="index">
+      <!-- List of text fields, one for each skill + a blank one for new entry. -->
+      <div class="form-field">
+        <ul id="edit-skills">
+          <li class="skill" v-for="(skill, index) in editSkills" :key="index">
             <input
               type="text"
               id="skill"
@@ -56,9 +57,9 @@ export default {
     };
   },
   computed: {
-    skills: function() {
-      let skills = this.jobSkills;
       return skills.concat("");
+    editSkills: function() {
+      let skills = this.skills;
     },
     filterEmptySkills: function() {
       return this.skills.filter(skill => skill.trim().length != 0);
