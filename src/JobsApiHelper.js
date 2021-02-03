@@ -1,9 +1,8 @@
 "use strict";
 
-const store = {};
+import Vue from "vue";
 
-export default {
-  store: store,
+export default Vue.observable({
   jobs: [
     {
       id: 1,
@@ -48,4 +47,4 @@ export default {
       skills: ["Skill F1", "Skill F2"]
     }
   ]
-};
+});
