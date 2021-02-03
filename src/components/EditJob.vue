@@ -32,6 +32,7 @@
               id="skill"
               v-model="skills[index]"
               placeholder="Enter new skill."
+              @blur="editSkills"
             />
           </li>
         </ul>
@@ -57,9 +58,14 @@ export default {
     };
   },
   computed: {
-      return skills.concat("");
     editSkills: function() {
       let skills = this.skills;
+      // Gurantee that the last item in the skills array is always an empty string.
+      if (!skills[skills.length - 1].trim() === "") {
+        return skills.concat("");
+      } else {
+        return skills;
+      }
     },
     filterEmptySkills: function() {
       return this.skills.filter(skill => skill.trim().length != 0);
