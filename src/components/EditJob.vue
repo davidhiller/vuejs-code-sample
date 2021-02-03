@@ -49,6 +49,7 @@ export default {
   },
   data() {
     return {
+      id: this.job.id,
       title: this.job.title,
       description: this.job.description,
       jobSkills: this.job.skills
@@ -65,6 +66,7 @@ export default {
     },
     newJob: function() {
       return {
+        id: this.job.id,
         title: this.title,
         description: this.description,
         skills: this.filterEmptySkills
