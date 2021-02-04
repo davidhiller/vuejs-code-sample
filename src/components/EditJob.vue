@@ -64,8 +64,8 @@ export default {
       id: this.job.id || -1,
       title: this.job.title || "",
       description: this.job.description || "",
+      skills: JSON.parse(JSON.stringify(this.job.skills)) || [], // Create deep copy of job.skills
       newSkill: "",
-      skills: JSON.parse(JSON.stringify(this.job.skills)) || [] // Create deep copy of job.skills
     };
   },
   methods: {
@@ -74,6 +74,14 @@ export default {
       this.title = "";
       this.description = "";
       this.skills = "";
+    },
+    // DEBUG
+    refreshForm: function() {
+      this.id = this.job.id || -1;
+      this.title = this.job.title || "";
+      this.description = this.job.description || "";
+      this.skills = JSON.parse(JSON.stringify(this.job.skills)) || []; // Create deep copy of job.skills
+      this.newSkill = "";
     },
     validateForm: function() {
       return (
@@ -106,6 +114,7 @@ export default {
         } else {
           console.log("job-updated: " + newJob.id);
           this.$emit("job-updated", newJob);
+          this.refreshForm();
         }
       } else {
         console.log(
