@@ -7,7 +7,7 @@
           <input
             type="text"
             id="job-title"
-            v-model="title"
+            v-model.trim="title"
             placeholder="Job Title"
           />
         </div>
@@ -18,7 +18,7 @@
         <textarea
           type="text"
           id="job-description"
-          v-model="description"
+          v-model.trim="description"
           placeholder="Description"
         />
       </div>
@@ -30,7 +30,7 @@
             <input
               type="text"
               id="skill"
-              v-model="skills[index]"
+              v-model.trim="skills[index]"
               placeholder="Edit this skill."
             />
           </li>
@@ -38,12 +38,10 @@
             <input
               type="text"
               id="skill"
-              v-model="newSkill"
+              v-model.trim="newSkill"
               placeholder="Enter new skill."
+              @keyup.enter="addSkill"
             />
-            <button type="button" @click="addSkill">
-              Add Skill
-            </button>
           </li>
         </ul>
       </div>
