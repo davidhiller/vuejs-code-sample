@@ -48,7 +48,6 @@ export default {
   data() {
     return {
       jobs: store.jobs,
-      editMode: false,
       query: "",
       blankJob: {
         id: -1,

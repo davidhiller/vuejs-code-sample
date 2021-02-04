@@ -1,21 +1,26 @@
 <template>
   <div class="ShowJob">
-    <!--<button @click="editJob">Edit Job</button>-->
     <button type="button" @click="$emit('job-deleted')">Delete Job</button>
-    <h3>Title: {{ job.title }}</h3>
-    <span id="description">
-      <h3>Description:</h3>
-      <p>{{ job.description }}</p>
-    </span>
-    <div id="skill-list">
-      <h3>Skills:</h3>
-      <ul id="skills">
-        <li class="skill" v-for="(skill, index) in job.skills" :key="index">
-          {{ skill }}
-        </li>
-      </ul>
-    </div>
-    <EditJob :job="job" @job-updated="updateJob($event)" />
+    <template v-if="!this.inEditMode">
+      <button type="button" @click="$emit('job-deleted')">Delete Job</button>
+      <h3>Title: {{ job.title }}</h3>
+      <span id="description">
+        <h3>Description:</h3>
+        <p>{{ job.description }}</p>
+      </span>
+      <div id="skill-list">
+        <h3>Skills:</h3>
+        <ul id="skills">
+          <li class="skill" v-for="(skill, index) in job.skills" :key="index">
+            {{ skill }}
+          </li>
+        </ul>
+      </div>
+      <button type="button" @click="editJob()" key="edit-job">Edit Job</button>
+    </template>
+    <template v-else>
+      <EditJob :job="job" @job-updated="updateJob($event)" />
+    </template>
   </div>
 </template>
 
@@ -30,11 +35,28 @@ export default {
   components: {
     EditJob
   },
+  data() {
+    return {
+      inEditMode: false
+    };
+  },
   methods: {
     editJob: function() {
       console.log("Switching to edit mode.");
+      this.inEditMode = true; // Toggle to edit job
       //this.$emit("Job Submitted");
       //this.tempMessage = "";
+    },
+    updateJob(newJob) {
+      this.inEditMode = false; // Toggle back to show job
+      console.log("updateJob called");
+      // Locate the original of the job that was edited
+      const index = this.jobs.findIndex(job => job.id === newJob.id);
+      console.log("index: " + index);
+      console.log("new Job: ");
+      console.log(newJob);
+      // Replace original job with edited version
+      this.jobs[index] = newJob;
     }
   }
 };
