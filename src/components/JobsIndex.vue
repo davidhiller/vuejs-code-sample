@@ -150,5 +150,4 @@ li
   text-align: center
   font-size: 1.5em
   padding: 0.125em 0.125em
-
 </style>
