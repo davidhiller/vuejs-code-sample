@@ -1,6 +1,5 @@
 <template>
   <div class="ShowJob">
-    <button type="button" @click="$emit('job-deleted')">Delete Job</button>
     <template v-if="!this.inEditMode">
       <button type="button" @click="$emit('job-deleted')">Delete Job</button>
       <h3>Title: {{ job.title }}</h3>
