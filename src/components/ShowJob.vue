@@ -35,26 +35,42 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.ShowJob {
-  margin: 10px;
-  border: 4px solid #5466e7;
-  border-radius: 20px;
-  padding: 10px;
-  background-color: #e9e9e9;
-}
-h3 {
-  margin: 0.25em 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style scoped lang="sass">
+@import '../styles/colors.sass'
+
+.ShowJob
+  margin: 10px
+  border: 4px solid $show-job-border-color
+  border-radius: 20px
+  padding: 10px
+  color: $show-job-text
+  background-color: $show-job-background
+
+h3
+  margin: 0.25em 0 0
+
+ul
+  list-style-type: none
+  padding: 0
+
+li
+  display: inline-block
+  margin: 0 10px
+
+input
+  width: 100%
+  height: 2em
+  padding: 12px 20px
+  margin: 8px 0
+  box-sizing: border-box
+
+  outline: 0
+
+  -webkit-border-radius: 0.25em
+  -moz-border-radius: 0.25em
+  border-radius: 0.25em
+
+  border: 2px solid $show-job-input-border-color
+  color: $show-job-input-text
+  background-color: $show-job-input-background
 </style>
