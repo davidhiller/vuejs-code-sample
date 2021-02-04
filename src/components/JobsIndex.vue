@@ -25,7 +25,6 @@
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
           <ShowJob :job="job" @job-deleted="deleteJob(job)" />
-          <EditJob :job="job" @job-updated="updateJob($event)" />
         </li>
       </ul>
       <hr />

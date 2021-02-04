@@ -15,14 +15,20 @@
         </li>
       </ul>
     </div>
+    <EditJob :job="job" @job-updated="updateJob($event)" />
   </div>
 </template>
 
 <script>
+import EditJob from "./EditJob.vue";
+
 export default {
   name: "ShowJob",
   props: {
     job: Object
+  },
+  components: {
+    EditJob
   },
   methods: {
     editJob: function() {
