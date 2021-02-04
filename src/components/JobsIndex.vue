@@ -15,7 +15,7 @@
         type="text"
         value=""
         placeholder="Type in one skill to filter jobs by."
-        v-model="skill"
+        v-model.trim="query"
       />
       <p class="warning">{{ filterMessage }}</p>
     </div>
@@ -50,7 +50,7 @@ export default {
     return {
       jobs: store.jobs,
       editMode: false,
-      skill: "",
+      query: "",
       blankJob: {
         id: -1,
         title: "",
@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     filteredJobs: function() {
-      let skillFilter = this.skill.trim().toLowerCase();
+      let skillFilter = this.query.toLowerCase();
       let jobs = this.jobs;
       if (skillFilter) {
         jobs = jobs.filter(job =>
@@ -76,7 +76,7 @@ export default {
       return jobs;
     },
     filterMessage: function() {
-      let skillFilter = this.skill.trim().toLowerCase();
+      let skillFilter = this.query.toLowerCase();
       if (skillFilter) {
         return `Filtering on skills; showing ${this.filteredJobs.length} of ${this.jobs.length} Jobs.`;
       } else {
