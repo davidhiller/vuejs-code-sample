@@ -72,7 +72,7 @@ export default {
       this.title = "";
       this.description = "";
       this.skills = [];
-      this.newSkill = ""
+      this.newSkill = "";
     },
     addSkill: function() {
       this.skills.push(this.newSkill);
