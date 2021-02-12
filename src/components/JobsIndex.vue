@@ -87,14 +87,6 @@ export default {
     }
   },
   methods: {
-    resetBlankJob() {
-      this.blankJob = {
-        id: -1,
-        title: "",
-        description: "",
-        skills: [""]
-      };
-    },
     deleteJob(deletedJob) {
       this.jobs = this.jobs.filter(job => job !== deletedJob);
     },
@@ -104,9 +96,6 @@ export default {
 
       // Add newJob to jobs
       this.jobs.push(newJob);
-
-      // Reset form
-      this.resetBlankJob();
     },
     updateJob(jobWithEdits) {
       // Locate the original of the job that was edited
