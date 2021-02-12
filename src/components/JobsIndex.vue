@@ -24,7 +24,11 @@
       <hr />
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
-          <ShowJob :job="job" @job-deleted="deleteJob(job)" />
+          <ShowJob
+            :job="job"
+            @job-deleted="deleteJob(job)"
+            @job-updated="updateJob(job)"
+          />
         </li>
       </ul>
       <hr />
@@ -99,10 +103,10 @@ export default {
 
       // Create a new unique id and assign it to the new job
       newJob.id = Date.now();
-
+      /*
       console.log("new Job: ");
       console.log(newJob);
-
+      */
       // Add newJob to jobs
       this.jobs.push(newJob);
 
@@ -117,7 +121,9 @@ export default {
       console.log("new Job: ");
       console.log(newJob);
       // Replace original job with edited version
-      this.jobs[index] = newJob;
+      this.jobs.splice(index, 1, newJob);
+      console.log("Jobs List:");
+      console.log(this.jobs);
     }
   }
 };

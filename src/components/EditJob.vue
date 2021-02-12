@@ -72,53 +72,42 @@ export default {
       this.title = "";
       this.description = "";
       this.skills = [];
+      this.newSkill = ""
     },
-    // DEBUG
+    /*// DEBUG
     refreshForm: function() {
       this.id = this.job.id || -1;
       this.title = this.job.title || "";
       this.description = this.job.description || "";
       this.skills = JSON.parse(JSON.stringify(this.job.skills)) || []; // Create deep copy of job.skills
       this.newSkill = "";
-    },
-    validateForm: function() {
-      return (
-        this.title.trim().length > 0 &&
-        this.description.trim().length > 0 &&
-        this.filterOutEmptySkills().length > 0
-      );
-    },
+    },*/
     addSkill: function() {
       this.skills.push(this.newSkill);
       this.newSkill = "";
     },
+    // Filter out skill items that that have no content
     filterOutEmptySkills: function() {
-      // Filter out skill items that that have no content
       return this.skills.filter(skill => skill.trim().length != 0);
     },
     saveJob: function() {
-      console.log(this.validateForm());
-      if (this.validateForm()) {
-        let newJob = {
-          id: this.id,
-          title: this.title,
-          description: this.description,
-          skills: this.filterOutEmptySkills()
-        };
-        if (newJob.id === -1) {
-          console.log("job-saved: " + newJob.id);
-          this.$emit("job-saved", newJob);
-          this.clearForm();
-        } else {
-          console.log("job-updated: " + newJob.id);
-          this.$emit("job-updated", newJob);
-          this.refreshForm();
-        }
+      let newJob = {
+        id: this.id,
+        title: this.title,
+        description: this.description,
+        skills: this.filterOutEmptySkills()
+      };
+      this.$emit("job-saved", newJob);
+      this.clearForm();
+      /*
+      if (newJob.id === -1) {
+        this.$emit("job-saved", newJob);
+        this.clearForm();
       } else {
-        console.log(
-          "title, description, and at least one skill must be entered"
-        );
+        this.$emit("job-updated", newJob);
+        this.refreshForm();
       }
+      */
     }
   }
 };
