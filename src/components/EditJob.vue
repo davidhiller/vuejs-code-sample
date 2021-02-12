@@ -74,14 +74,6 @@ export default {
       this.skills = [];
       this.newSkill = ""
     },
-    /*// DEBUG
-    refreshForm: function() {
-      this.id = this.job.id || -1;
-      this.title = this.job.title || "";
-      this.description = this.job.description || "";
-      this.skills = JSON.parse(JSON.stringify(this.job.skills)) || []; // Create deep copy of job.skills
-      this.newSkill = "";
-    },*/
     addSkill: function() {
       this.skills.push(this.newSkill);
       this.newSkill = "";
@@ -99,15 +91,6 @@ export default {
       };
       this.$emit("job-saved", newJob);
       this.clearForm();
-      /*
-      if (newJob.id === -1) {
-        this.$emit("job-saved", newJob);
-        this.clearForm();
-      } else {
-        this.$emit("job-updated", newJob);
-        this.refreshForm();
-      }
-      */
     }
   }
 };

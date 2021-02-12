@@ -18,7 +18,7 @@
       <button type="button" @click="editJob()" key="edit-job">Edit Job</button>
     </template>
     <template v-else>
-      <EditJob :job="job" @job-saved="updateJob(job)" />
+      <EditJob :job="job" @job-saved="updateJob($event)" />
     </template>
   </div>
 </template>
@@ -46,13 +46,6 @@ export default {
     updateJob(newJob) {
       this.inEditMode = false; // Toggle back to show job
       this.$emit("job-updated", newJob);
-
-      /*******************************************
-      // Locate the original of the job that was edited
-      const index = this.jobs.findIndex(job => job.id === newJob.id);
-      // Replace original job with edited version
-      this.jobs[index] = newJob;
-      *******************************************/
     }
   }
 };
