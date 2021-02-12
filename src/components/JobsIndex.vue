@@ -24,7 +24,11 @@
       <hr />
       <ul id="jobs">
         <li v-for="job in filteredJobs" :key="job.id">
-          <ShowJob :job="job" @job-deleted="deleteJob(job)" />
+          <ShowJob
+            :job="job"
+            @job-deleted="deleteJob(job)"
+            @job-updated="updateJob($event)"
+          />
         </li>
       </ul>
       <hr />
@@ -95,13 +99,8 @@ export default {
       this.jobs = this.jobs.filter(job => job !== deletedJob);
     },
     createJob(newJob) {
-      console.log("createJob called");
-
       // Create a new unique id and assign it to the new job
       newJob.id = Date.now();
-
-      console.log("new Job: ");
-      console.log(newJob);
 
       // Add newJob to jobs
       this.jobs.push(newJob);
@@ -109,15 +108,12 @@ export default {
       // Reset form
       this.resetBlankJob();
     },
-    updateJob(newJob) {
-      console.log("updateJob called");
+    updateJob(jobWithEdits) {
       // Locate the original of the job that was edited
-      const index = this.jobs.findIndex(job => job.id === newJob.id);
-      console.log("index: " + index);
-      console.log("new Job: ");
-      console.log(newJob);
+      const index = this.jobs.findIndex(job => job.id === jobWithEdits.id);
+
       // Replace original job with edited version
-      this.jobs[index] = newJob;
+      this.jobs.splice(index, 1, jobWithEdits);
     }
   }
 };
