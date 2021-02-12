@@ -71,7 +71,7 @@ export default {
       this.id = -1;
       this.title = "";
       this.description = "";
-      this.skills = "";
+      this.skills = [];
     },
     // DEBUG
     refreshForm: function() {
