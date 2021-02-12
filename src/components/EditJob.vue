@@ -143,13 +143,13 @@ ul
   padding: 0
 
 li
-  margin: 0 10px
+  margin: 0 0
 
 input
   width: 100%
   height: 2em
   padding: 12px 20px
-  margin: 8px 0
+  margin: 2px 0
   box-sizing: border-box
 
   outline: 0
