@@ -70,7 +70,7 @@ export default class JobsApiWrapper {
 
   patch(job) {
     this.jobs.splice(
-      this.jobs.find(item => item.id === job.id),
+      this.jobs.findIndex(item => item.id === job.id),
       1,
       job
     );
@@ -79,7 +79,7 @@ export default class JobsApiWrapper {
 
   delete(id) {
     this.jobs.splice(
-      this.jobs.find(item => item.id === id),
+      this.jobs.findIndex(item => item.id === id),
       1
     );
     return {};
