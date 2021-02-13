@@ -54,7 +54,7 @@ export default class JobsApiWrapper {
   get(id) {
     if (id) {
       // Return specific job by ID; if ID not found, return empty set.
-      return this.jobs.find(job => job.id == id) ?? { jobs: {} };
+      return this.jobs.find(job => job.id === id) ?? { jobs: {} };
     } else {
       // If called without arguments, return entire set.
       return this.jobs;
@@ -70,7 +70,7 @@ export default class JobsApiWrapper {
 
   patch(job) {
     this.jobs.splice(
-      this.jobs.find(item => item.id == job.id),
+      this.jobs.find(item => item.id === job.id),
       1,
       job
     );
@@ -79,7 +79,7 @@ export default class JobsApiWrapper {
 
   delete(id) {
     this.jobs.splice(
-      this.jobs.find(item => item.id == id),
+      this.jobs.find(item => item.id === id),
       1
     );
     return {};
