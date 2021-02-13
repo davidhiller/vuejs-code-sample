@@ -1,5 +1,6 @@
 "use strict";
 
+// Stubs API interactions and returns cached values.
 export default class JobsApiWrapper {
   constructor(jobs) {
     const staticJobs = [
@@ -52,8 +53,10 @@ export default class JobsApiWrapper {
 
   get(id) {
     if (id) {
-      return this.jobs.find(job => job.id == id) ?? { jobs: this.jobs };
+      // Return specific job by ID; if ID not found, return empty set.
+      return this.jobs.find(job => job.id == id) ?? { jobs: {} };
     } else {
+      // If called without arguments, return entire set.
       return this.jobs;
     }
   }
