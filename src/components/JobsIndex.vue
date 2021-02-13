@@ -39,7 +39,7 @@
 <script>
 import ShowJob from "./ShowJob.vue";
 import EditJob from "./EditJob.vue";
-import store from "../JobsApiHelper.js";
+import JobsApiWrapper from "../JobsApiHelper.js";
 
 export default {
   name: "JobsIndex",
@@ -51,7 +51,7 @@ export default {
   // Sample data hard-coded for development.
   data() {
     return {
-      jobs: store.jobs,
+      jobs: null,
       query: "",
       blankJob: {
         id: -1,
@@ -60,6 +60,10 @@ export default {
         skills: []
       }
     };
+  },
+  mounted: function() {
+    const jobsModel = new JobsApiWrapper();
+    this.jobs = jobsModel.get(); // Get all jobs
   },
   computed: {
     filteredJobs: function() {
