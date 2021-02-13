@@ -62,6 +62,9 @@ export default class JobsApiWrapper {
   }
 
   post(job) {
+    // Create a new unique id and assign it to the new job
+    job.id = Date.now();
+    // Add newJob to jobs
     this.jobs.push(job);
   }
 

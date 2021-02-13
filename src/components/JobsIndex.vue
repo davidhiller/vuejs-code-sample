@@ -51,6 +51,7 @@ export default {
   // Sample data hard-coded for development.
   data() {
     return {
+      jobsModel: null,
       jobs: null,
       query: "",
       blankJob: {
@@ -62,8 +63,8 @@ export default {
     };
   },
   mounted: function() {
-    const jobsModel = new JobsApiWrapper();
-    this.jobs = jobsModel.get(); // Get all jobs
+    this.jobsModel = new JobsApiWrapper();
+    this.getAllJobs();
   },
   computed: {
     filteredJobs: function() {
@@ -91,22 +92,21 @@ export default {
     }
   },
   methods: {
+    getAllJobs() {
+      this.jobs = this.jobsModel.get();
+    },
     deleteJob(deletedJob) {
-      this.jobs = this.jobs.filter(job => job !== deletedJob);
+      const id = deletedJob.id;
+      this.jobsModel.delete(id);
+      this.getAllJobs();
     },
     createJob(newJob) {
-      // Create a new unique id and assign it to the new job
-      newJob.id = Date.now();
-
-      // Add newJob to jobs
-      this.jobs.push(newJob);
+      this.jobsModel.post(newJob);
+      this.getAllJobs();
     },
     updateJob(jobWithEdits) {
-      // Locate the original of the job that was edited
-      const index = this.jobs.findIndex(job => job.id === jobWithEdits.id);
-
-      // Replace original job with edited version
-      this.jobs.splice(index, 1, jobWithEdits);
+      this.jobsModel.patch(jobWithEdits);
+      this.getAllJobs();
     }
   }
 };
