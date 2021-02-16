@@ -47,9 +47,9 @@ describe("ShowJob.vue", () => {
 
   // 'delete' button if object is persisted (emit 'job-deleted')
 
-  /*it("emits 'job-deleted' when btn-delete-job clicked", () => {
-    const btnDeleteJob = wrapper.find('#btn-delete-job');
-    btnDeleteJob.trigger('click');
-    expect(wrapper.emitted('job-deleted')).toBeTruthy();
-  });*/
+  it("emits 'job-deleted' when btn-delete-job clicked", () => {
+    const btnDeleteJob = wrapper.find("#btn-delete-job");
+    btnDeleteJob.trigger("click");
+    expect(wrapper.emitted("job-deleted")).toBeTruthy();
+  });
 });
