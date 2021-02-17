@@ -46,7 +46,7 @@
         </ul>
       </div>
 
-      <button type="button" @click="saveJob">Save</button>
+      <button ref="btn-save-job" type="button" @click="saveJob">Save</button>
     </form>
   </div>
 </template>
