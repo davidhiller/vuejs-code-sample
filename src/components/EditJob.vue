@@ -1,5 +1,5 @@
 <template>
-  <div class="EditJob">
+  <div class="edit-job">
     <form>
       <div class="form-row vertical">
         <div class="form-field">
@@ -100,7 +100,7 @@ export default {
 <style scoped lang="sass">
 @import '../styles/colors.sass'
 
-.EditJob
+.edit-job
   margin: 10px
   border: 4px solid $edit-job-border-color
   border-radius: 20px

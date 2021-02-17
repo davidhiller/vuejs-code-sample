@@ -1,5 +1,5 @@
 <template>
-  <div class="JobsIndex">
+  <div class="jobs-index">
     <h1>Jobs Index</h1>
     <!-- Add Job -->
     <div class="add-job">
@@ -11,7 +11,7 @@
     <div class="job-filter">
       <h2>...or filter existing jobs by skill:</h2>
       <input
-        id="skillFilter"
+        id="skill-filter"
         type="text"
         value=""
         placeholder="Type in one skill to filter jobs by."
@@ -133,6 +133,7 @@ li
   // color: #e50038
 
 #skillFilter
+#skill-filter
   float: center
   text-align: center
   font-size: 1.5em

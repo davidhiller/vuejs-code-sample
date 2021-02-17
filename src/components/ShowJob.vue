@@ -1,5 +1,5 @@
 <template>
-  <div class="ShowJob">
+  <div class="show-job">
     <template v-if="!this.inEditMode">
       <button ref="btn-delete-job" type="button" @click="$emit('job-deleted')">Delete Job</button>
       <h3>Title: {{ job.title }}</h3>
@@ -55,7 +55,7 @@ export default {
 <style scoped lang="sass">
 @import '../styles/colors.sass'
 
-.ShowJob
+.show-job
   margin: 10px
   border: 4px solid $show-job-border-color
   border-radius: 20px
