@@ -1,9 +1,7 @@
 <template>
   <div class="ShowJob">
     <template v-if="!this.inEditMode">
-      <button id="btn-delete-job" type="button" @click="$emit('job-deleted')">
-        Delete Job
-      </button>
+      <button ref="btn-delete-job" type="button" @click="$emit('job-deleted')">Delete Job</button>
       <h3>Title: {{ job.title }}</h3>
       <span id="description">
         <h3>Description:</h3>
@@ -17,9 +15,7 @@
           </li>
         </ul>
       </div>
-      <button id="btn-edit-job" type="button" @click="editJob()" key="edit-job">
-        Edit Job
-      </button>
+      <button ref="btn-edit-job" type="button" @click="editJob()" key="edit-job">Edit Job</button>
     </template>
     <template v-else>
       <EditJob :job="job" @job-saved="updateJob($event)" />
