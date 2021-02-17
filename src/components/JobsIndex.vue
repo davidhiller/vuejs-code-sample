@@ -4,7 +4,7 @@
     <!-- Add Job -->
     <div class="add-job">
       <h2>Add a new job here:</h2>
-      <EditJob :job="blankJob" @job-saved="createJob($event)" />
+      <EditJob ref="add-job" :job="blankJob" @job-saved="createJob($event)" />
       <hr />
     </div>
     <!-- Job Filter -->
