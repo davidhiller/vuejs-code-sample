@@ -132,7 +132,6 @@ li
   font-size: 1em
   // color: #e50038
 
-#skillFilter
 #skill-filter
   float: center
   text-align: center
