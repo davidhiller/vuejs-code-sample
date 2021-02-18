@@ -49,23 +49,37 @@ export default class JobsApiWrapper {
     ];
 
     this.jobs = jobs || staticJobs;
+    this.api = new JobsAPI;
+    this.mock = true;
   }
 
   get(id) {
-    if (id) {
-      // Return specific job by ID; if ID not found, return empty set.
-      return this.jobs.find(job => job.id === id) ?? { jobs: {} };
+    const jobs = this.api.get();
+    if (this.mock) {
+      if (id) {
+        // Return specific job by ID; if ID not found, return empty set.
+        return this.jobs.find(job => job.id === id) ?? { jobs: {} };
+      } else {
+        // If called without arguments, return entire set.
+        return this.jobs;
+      }
     } else {
-      // If called without arguments, return entire set.
-      return this.jobs;
+      return jobs;
     }
   }
 
   post(job) {
-    // Create a new unique id and assign it to the new job
-    job.id = Date.now();
-    // Add newJob to jobs
-    this.jobs.push(job);
+    const response = this.api.post(job);
+    if (this.mock) {
+      // Create a new unique id and assign it to the new job
+      job.id = Date.now();
+      // Add newJob to jobs
+      this.jobs.push(job);
+      // Mock response
+      return { job: this.job };
+    } else {
+      return response;
+    }
   }
 
   patch(job) {
@@ -83,5 +97,66 @@ export default class JobsApiWrapper {
       1
     );
     return {};
+  }
+}
+
+
+class JobsAPI {
+  constructor() {
+    this.host = "https://localhost:8080";
+    this.path = "jobs";
+    this.someApiKey = "ExampleRandomString"; // Really should be read in from environment or secret instead of hard-coded in source.
+    this.endpoint = new URL(this.path, this.host);
+    this.mock = new JobsApiWrapper;
+  }
+
+  // TODO: Change to private method when https://github.com/tc39/proposal-private-methods is approved.
+  checkErrors = function(response, mock) {
+    if (response) {
+      if (response.status >= 200 && response.status <= 299) {
+        return response;
+      } else {
+        throw Error(response.statusText);
+      }
+    } else {
+      if (mock) {
+        return mock.call(this);
+      } else {
+        throw Error(NetworkError);
+      }
+    }
+  }
+  /* ---- End private ---- */
+
+  get = function(id) {
+
+    let mock = undefined;
+
+    if (this.mock) {
+      mock = this.mock.get();
+    }
+
+    let params = {
+      apiKey: this.someApiKey
+    };
+
+    if (id) {
+      params.id = id;
+    }
+
+    const url = this.endpoint;
+    url.search = new URLSearchParams(params);
+
+    let job;
+
+    fetch(url, {
+      method: 'GET'
+    })
+      .then(this.checkErrors(mock))
+      .then(response => response.json())
+      .then(data => job = data.job)
+      .catch(error => console.log(error));
+
+    return job;
   }
 }
