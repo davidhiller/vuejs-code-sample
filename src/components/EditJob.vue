@@ -6,7 +6,7 @@
           <label for="job-title">Job Title</label>
           <input
             type="text"
-            id="job-title"
+            class="job-title"
             v-model.trim="title"
             placeholder="Job Title"
           />
@@ -17,7 +17,7 @@
         <label for="job-description">Description</label>
         <textarea
           type="text"
-          id="job-description"
+          class="job-description"
           v-model.trim="description"
           placeholder="Description"
         />
@@ -26,10 +26,10 @@
       <!-- List of text fields, one for each skill + a blank one for new entry. -->
       <div class="form-field">
         <ul>
-          <li class="skill" v-for="(skill, index) in skills" :key="index">
+          <li class="skill-list" v-for="(skill, index) in skills" :key="index">
             <input
               type="text"
-              id="skill"
+              class="skill"
               v-model.trim="skills[index]"
               placeholder="Edit this skill."
             />
@@ -37,7 +37,7 @@
           <li class="skill">
             <input
               type="text"
-              id="skill"
+              class="skill-blank"
               v-model.trim="newSkill"
               placeholder="Enter new skill."
               @keyup.enter="addSkill"
@@ -46,7 +46,7 @@
         </ul>
       </div>
 
-      <button ref="btn-save-job" type="button" @click="saveJob">Save</button>
+      <button ref="btn-save-job" class="btn-save-job" type="button" @click="saveJob">Save</button>
     </form>
   </div>
 </template>
