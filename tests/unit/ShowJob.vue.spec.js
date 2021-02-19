@@ -21,35 +21,43 @@ afterEach(() => {
 });
 
 describe("ShowJob.vue", () => {
-  // Show the current values
+  describe("rendered elements", () => {
+    // Show the current values
+    it("renders job.title when passed", () => {
+      expect(wrapper.text()).toMatch(job.title);
+    });
 
-  it("renders job.title when passed", () => {
-    expect(wrapper.text()).toMatch(job.title);
+    it("renders job.description when passed", () => {
+      expect(wrapper.text()).toMatch(job.description);
+    });
+
+    it("renders a list of skills when passed job.skills", () => {
+      let displayedSkills = [];
+      expect(wrapper.findAll(".skill").length).toBe(job.skills.length);
+      wrapper
+        .findAll(".skill")
+        .wrappers.forEach(item => displayedSkills.push(item.text()));
+      expect(displayedSkills).toEqual(job.skills);
+    });
   });
 
-  it("renders job.description when passed", () => {
-    expect(wrapper.text()).toMatch(job.description);
-  });
+  describe("emits", () => {
+    // Allow toggle between editing (use EditJob) and show
+    /*it("emits 'job-updated' when btn-edit-job clicked", () => {
+      const btnEditJob = wrapper.find('#btn-edit-job');
+      btnEditJob.trigger('click');
+      expect(wrapper.emitted('job-updated')).toBeTruthy();
+    });
+    */
 
-  //it("renders a list of skills when passed", () => {
-  //  expect(wrapper.).toMatch(job.skills);
-  //})
+    // On save, emit 'job-updated' and switch back to view
+    //it("emits 'job-updated' when EditJob emits 'job-saved'", () => {});
 
-  // Allow toggle between editing (use EditJob) and show
-  /*it("emits 'job-updated' when btn-edit-job clicked", () => {
-    const btnEditJob = wrapper.find('#btn-edit-job');
-    btnEditJob.trigger('click');
-    expect(wrapper.emitted('job-updated')).toBeTruthy();
-  });
-  */
-
-  // On save, emit 'job-updated' and switch back to view
-
-  // 'delete' button if object is persisted (emit 'job-deleted')
-
-  it("emits 'job-deleted' when btn-delete-job clicked", () => {
-    const btnDeleteJob = wrapper.find("#btn-delete-job");
-    btnDeleteJob.trigger("click");
-    expect(wrapper.emitted("job-deleted")).toBeTruthy();
+    // 'delete' button if object is persisted (emit 'job-deleted')
+    it("emits 'job-deleted' when btn-delete-job clicked", async () => {
+      const btnDeleteJob = wrapper.find("#btn-delete-job");
+      await btnDeleteJob.trigger("click");
+      expect(wrapper.emitted("job-deleted")).toBeTruthy();
+    });
   });
 });
