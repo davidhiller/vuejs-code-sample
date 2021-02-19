@@ -55,7 +55,7 @@ describe("ShowJob.vue", () => {
 
     // 'delete' button if object is persisted (emit 'job-deleted')
     it("emits 'job-deleted' when btn-delete-job clicked", async () => {
-      const btnDeleteJob = wrapper.find("#btn-delete-job");
+      const btnDeleteJob = wrapper.findComponent({ref: "btn-delete-job"});
       await btnDeleteJob.trigger("click");
       expect(wrapper.emitted("job-deleted")).toBeTruthy();
     });
