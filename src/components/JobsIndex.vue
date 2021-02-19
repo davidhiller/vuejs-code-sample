@@ -2,16 +2,16 @@
   <div class="jobs-index">
     <h1>Jobs Index</h1>
     <!-- Add Job -->
-    <div class="add-job">
+    <div class="section-add-job">
       <h2>Add a new job here:</h2>
       <EditJob ref="add-job" :job="blankJob" @job-saved="createJob($event)" />
       <hr />
     </div>
     <!-- Job Filter -->
-    <div class="job-filter">
+    <div class="section-job-filter">
       <h2>...or filter existing jobs by skill:</h2>
       <input
-        id="skill-filter"
+        class="skill-filter"
         type="text"
         value=""
         placeholder="Type in one skill to filter jobs by."
@@ -20,9 +20,9 @@
       <p class="warning">{{ filterMessage }}</p>
     </div>
     <!-- List and Edit Existing Jobs -->
-    <div class="job-list">
+    <div class="section-job-list">
       <hr />
-      <ul id="jobs">
+      <ul class="job-list">
         <li v-for="job in filteredJobs" :key="job.id">
           <ShowJob
             :job="job"
@@ -132,7 +132,7 @@ li
   font-size: 1em
   // color: #e50038
 
-#skill-filter
+.skill-filter
   float: center
   text-align: center
   font-size: 1.5em

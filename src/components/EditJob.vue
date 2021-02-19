@@ -25,7 +25,7 @@
 
       <!-- List of text fields, one for each skill + a blank one for new entry. -->
       <div class="form-field">
-        <ul id="edit-skills">
+        <ul>
           <li class="skill" v-for="(skill, index) in skills" :key="index">
             <input
               type="text"
