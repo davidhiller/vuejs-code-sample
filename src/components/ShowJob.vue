@@ -1,21 +1,21 @@
 <template>
   <div class="show-job">
     <template v-if="!this.inEditMode">
-      <button ref="btn-delete-job" type="button" @click="$emit('job-deleted')">Delete Job</button>
+      <button ref="btn-delete-job" class="btn-delete-job" type="button" @click="$emit('job-deleted')">Delete Job</button>
       <h3>Title: {{ job.title }}</h3>
-      <span id="description">
+      <span class="description">
         <h3>Description:</h3>
         <p>{{ job.description }}</p>
       </span>
-      <div id="skill-list">
+      <div>
         <h3>Skills:</h3>
-        <ul id="skills">
+        <ul class="skill-list">
           <li class="skill" v-for="(skill, index) in job.skills" :key="index">
             {{ skill }}
           </li>
         </ul>
       </div>
-      <button ref="btn-edit-job" type="button" @click="editJob()" key="edit-job">Edit Job</button>
+      <button ref="btn-edit-job" class="btn-edit-job" type="button" @click="editJob()" key="edit-job">Edit Job</button>
     </template>
     <template v-else>
       <EditJob :job="job" @job-saved="updateJob($event)" />
