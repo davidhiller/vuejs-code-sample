@@ -1,3 +1,4 @@
+/* Copyright (c) 2021 David Hiller */
 import { shallowMount, mount } from "@vue/test-utils";
 import ShowJob from "@/components/ShowJob.vue";
 import EditJob from "@/components/EditJob.vue";
