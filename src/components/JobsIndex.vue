@@ -1,3 +1,4 @@
+<!-- Copyright 2021 David Hiller -->
 <template>
   <div class="jobs-index">
     <h1>Jobs Index</h1>

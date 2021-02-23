@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2021 David Hiller -->
 <template>
   <div id="app">
     <JobsIndex />
