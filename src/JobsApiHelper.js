@@ -1,3 +1,4 @@
+/* Copyright (c) 2021 David Hiller */
 "use strict";
 
 // Stubs API interactions and returns cached values.

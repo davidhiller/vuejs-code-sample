@@ -1,3 +1,4 @@
+<!-- Copyright 2021 David Hiller -->
 <template>
   <div class="show-job">
     <template v-if="!this.inEditMode">
